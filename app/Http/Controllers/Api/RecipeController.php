@@ -37,12 +37,14 @@ class RecipeController extends Controller
         $recipe['reading'] = $recipeModel->reading;
         $recipe['tip'] = $recipeModel->tips;
         $recipe['description'] = $recipeModel->description;
+        $recipe['materials'] = [];
         foreach ($recipeModel->hasManyMaterials as $materialModel) {
             $material['name'] = $materialModel->name;
             $material['unit'] = $materialModel->unit;
             $recipe['materials'][] = $material;
         }
 
+        $recipe['steps'] = [];
         foreach ($recipeModel->hasManySteps as $stepModel) {
             $step['sort'] = $stepModel->sorts;
             $step['content'] = $stepModel->contents;
